@@ -26,7 +26,7 @@ class Astroconformer(nn.Module):
         nn.Linear(args.encoder_dim, args.encoder_dim),
         nn.SiLU(),
         nn.Dropout(p=0.3),
-        nn.Linear(args.encoder_dim,1),
+        nn.Linear(args.encoder_dim,6), # predict 6 labels
     )
     if getattr(args, 'mean_label', False):
       self.pred_layer[3].bias.data.fill_(args.mean_label)

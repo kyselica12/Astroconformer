@@ -15,14 +15,15 @@ from .lr_scheduler import get_scheduler
 
 def init_train(args):
   # model initialization
-  same_seeds(args.randomseed)
+  # same_seeds(args.randomseed)
   if args.model == 'Astroconformer':
     args.stride = int(20/args.sample_rates[0]**0.5)
   if args.deepnorm and args.num_layers >= 10:
     layer_coeff = args.num_layers/5.0
     args.alpha, args.beta = layer_coeff**(0.5), layer_coeff**(-0.5)
     
-  model = model_dict[args.model](args).to(args.device)
+  # model = model_dict[args.model](args).to(args.device)
+  model = model_dict[args.model](args)
   deepnorm_init(model, args)
   summary(model, args.input_shape, depth=10)
   # if args.fold == 0:
